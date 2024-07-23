@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+.div-main {
+	display: flex;
+	margin-top: 10%;
+	justify-content: center;
+}
+
+.div-content {
+	width: 35%;
+	height: auto;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.div-content img {
+    width: 100%;
+    height: auto;
+}
+
+.div-login {
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1.univ {
+	text-align: center;
+	font-size: 3em;
+	margin-top: 0px;
+}
+
+input {
+	width: 60%;
+	height: 40px;
+	border: none;
+	background-color: lightgray;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#loginForm {
+	/* display: flex; */
+	flex-direction: column;
+}
+
+#loginForm span {
+	padding-left: 30px;
+}
