@@ -118,6 +118,10 @@
 			})
 		});
 	</script>
+	<!-- 
+		ajax 실행 시  success 받을 경우, val 값을 받음.
+		err / succ 값을 한번 더 호출한다?
+	 -->
 	
 	<!-- <form name="idCheck" action="idCheck.me">
 		아이디 : <input name="id" required>&emsp; 

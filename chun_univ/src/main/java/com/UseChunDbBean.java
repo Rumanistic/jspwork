@@ -101,4 +101,51 @@ public class UseChunDbBean {
 		
 		return cb;
 	}
+	
+	public boolean doVerify(String stdNo, String stdName, String stdSsn) {
+		boolean b = false;
+		
+		try {
+			con = chunPool.getConnection();
+			sql = "select * from tb_student where student_no=? and student_name=? and student_ssn like ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, stdNo);
+			pst.setString(2, stdName);
+			pst.setString(3, stdSsn);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				b = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			chunPool.freeConnection(con, pst);
+		}
+		
+		return b;
+	}
+	
+	public boolean updateStdPwd(String stdNo, String newStdPwd) {
+		boolean b = false;
+		
+		try {
+			con = chunPool.getConnection();
+			sql = "update tb_student set student_pwd = ? where student_no = ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, stdNo);
+			pst.setString(2, newStdPwd);
+			int result = pst.executeUpdate();
+			
+			if(result > 0) {
+				b = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			chunPool.freeConnection(con);
+		}
+		
+		return b;
+	}
 }

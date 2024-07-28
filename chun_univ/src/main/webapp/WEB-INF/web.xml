@@ -29,4 +29,24 @@
     <servlet-name>StdNoFind</servlet-name>
     <url-pattern>/stdNoFind</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StdPwdUpdate</display-name>
+    <servlet-name>StdPwdUpdate</servlet-name>
+    <servlet-class>com.StdPwdUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StdPwdUpdate</servlet-name>
+    <url-pattern>/stdPwdUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StdInfoVerify</display-name>
+    <servlet-name>StdInfoVerify</servlet-name>
+    <servlet-class>com.StdInfoVerify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StdInfoVerify</servlet-name>
+    <url-pattern>/stdInfoVerify</url-pattern>
+  </servlet-mapping>
 </web-app>

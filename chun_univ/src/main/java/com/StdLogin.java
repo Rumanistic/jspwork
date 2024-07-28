@@ -31,6 +31,13 @@ public class StdLogin extends HttpServlet {
 		
 		System.out.println("id: " + stdId + " pwd: " + stdPwd + " and isLogin? " + isLogin);
 		
+		if(stdId.equals("admin") && stdPwd.equals("admin")) {
+			session.setAttribute("stdId", stdId);
+			session.setAttribute("stdInfo", "관리자 로그인 중 입니다.");
+			System.out.println(session.getAttribute("stdId"));
+			response.sendRedirect("chunMain.jsp");
+		}
+		
 		if(isLogin) {
 			session.setAttribute("stdId", stdId);
 			session.setAttribute("stdInfo", ucb.getStdInfo(stdId));
