@@ -1,47 +1,63 @@
 package com;
 
 public class ChunBean {
-	private String STUDENT_NO;
-	private String DEPARTMENT_NO;
-	private String STUDENT_NAME;
-	private String ENTRANCE_DATE;
-	private String ABSENCE_YN;
-	private String COACH_PROFESSOR_NO;
+	private String student_no;
+	private String department_no;
+	private String department_name;
+	private String student_name;
+	private String entrance_date;
+	private String absence_yn;
+	private String coach_professor_no;
+	private String coach_professor_name;
 	
-	public String getSTUDENT_NO() {
-		return STUDENT_NO;
+	public String getStudent_no() {
+		return student_no;
 	}
-	public void setSTUDENT_NO(String STUDENT_NO) {
-		this.STUDENT_NO = STUDENT_NO;
+	public void setStudent_no(String student_no) {
+		this.student_no = student_no;
 	}
-	public String getDEPARTMENT_NO() {
-		return DEPARTMENT_NO;
+	public String getDepartment_no() {
+		return department_no;
 	}
-	public void setDEPARTMENT_NO(String DEPARTMENT_NO) {
-		this.DEPARTMENT_NO = DEPARTMENT_NO;
+	public void setDepartment_no(String department_no) {
+		this.department_no = department_no;
 	}
-	public String getSTUDENT_NAME() {
-		return STUDENT_NAME;
+	public String getDepartment_name() {
+		return department_name;
 	}
-	public void setSTUDENT_NAME(String STUDENT_NAME) {
-		this.STUDENT_NAME = STUDENT_NAME;
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
 	}
-	public String getENTRANCE_DATE() {
-		return ENTRANCE_DATE;
+	public String getStudent_name() {
+		return student_name;
 	}
-	public void setENTRANCE_DATE(String ENTRANCE_DATE) {
-		this.ENTRANCE_DATE = ENTRANCE_DATE;
+	public void setStudent_name(String student_name) {
+		this.student_name = student_name;
 	}
-	public String getABSENCE_YN() {
-		return ABSENCE_YN;
+	public String getEntrance_date() {
+		return entrance_date;
 	}
-	public void setABSENCE_YN(String ABSENCE_YN) {
-		this.ABSENCE_YN = ABSENCE_YN;
+	public void setEntrance_date(String entrance_date) {
+		this.entrance_date = entrance_date;
 	}
-	public String getCOACH_PROFESSOR_NO() {
-		return COACH_PROFESSOR_NO;
+	public String getAbsence_yn() {
+		return absence_yn;
 	}
-	public void setCOACH_PROFESSOR_NO(String COACH_PROFESSOR_NO) {
-		this.COACH_PROFESSOR_NO = COACH_PROFESSOR_NO;
+	public void setAbsence_yn(String absence_yn) {
+		this.absence_yn = absence_yn;
 	}
+	public String getCoach_professor_no() {
+		return coach_professor_no;
+	}
+	public void setCoach_professor_no(String coach_professor_no) {
+		this.coach_professor_no = coach_professor_no;
+	}
+	public String getCoach_professor_name() {
+		return coach_professor_name;
+	}
+	public void setCoach_professor_name(String coach_professor_name) {
+		this.coach_professor_name = coach_professor_name;
+	}
+	
+	
 }

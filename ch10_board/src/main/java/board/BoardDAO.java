@@ -105,6 +105,7 @@ public class BoardDAO {
 				b.setSubject(rs.getString("subject"));
 				b.setContent(rs.getString("content"));
 				b.setIp(rs.getString("ip"));
+				b.setPass(rs.getString("pass"));
 				updateCount(num);
 				b.setCount(rs.getInt("count") + 1);
 			}
@@ -135,6 +136,117 @@ public class BoardDAO {
 			e.printStackTrace();
 		} finally {
 			pool.freeConnection(con);
+		}
+		
+		return flag;
+	}
+	
+	public void updateReplyPos(int ref, int pos) {
+		try {
+			con = pool.getConnection();
+			sql = "update board set pos = pos + 1 where ref=? and pos > ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, ref);
+			pst.setInt(2, pos);
+			pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+	}
+	
+	public boolean insertBoard(Board b) {
+		boolean flag = false;
+		
+		try {
+			con = pool.getConnection();
+			sql = "insert into board values(seq_board.nextval, ?, ?, ?, 0, seq_board.currval, 0, sysdate, ?, ?, default)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, b.getName());
+			pst.setString(2, b.getSubject());
+			pst.setString(3, b.getContent());
+			pst.setString(4, b.getPass());
+			pst.setString(5, b.getIp());
+			
+			if(pst.executeUpdate() > 0) {
+				System.out.println("Insert success");
+				flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pst);
+		}
+		
+		return flag;
+	}
+	
+	public boolean updateBoard(Board b) {
+		boolean flag = false;
+		
+		try {
+			con = pool.getConnection();
+			sql = "update board set name=?, subject=?, content=? where num="+b.getNum();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, b.getName());
+			pst.setString(2, b.getSubject());
+			pst.setString(3, b.getContent());
+			if(pst.executeUpdate() > 0) {
+				System.out.println("Insert success");
+				flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pst);
+		}
+		
+		return flag;
+	}
+	
+	public void replyBoard(Board b) {
+		try {
+			con = pool.getConnection();
+			sql = "insert into board values (seq_board.nextval, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, default)";
+			int depth = b.getDepth() + 1;
+			int pos = b.getPos() + 1;
+			
+			pst = con.prepareStatement(sql);
+			pst.setString(1, b.getName());
+			pst.setString(2, b.getSubject());
+			pst.setString(3, b.getContent());
+			pst.setInt(4, pos);
+			pst.setInt(5, b.getRef());
+			pst.setInt(6, depth);
+			pst.setString(7, b.getPass());
+			pst.setString(8, b.getIp());
+			if(pst.executeUpdate() > 0) {
+				System.out.println("Insert success");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pst);
+		}
+	}
+	
+	public boolean deleteBoard(int num) {
+		boolean flag = false;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select count(*) from board where ref = num";
+			rs = con.createStatement().executeQuery(sql);
+			if(rs.next()) {
+				if(rs.getInt(1) <= 1) {
+					sql = "delete from board where ";
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
 		}
 		
 		return flag;

@@ -25,33 +25,36 @@
 </script>
 </head>
 <body>
-	<table>
-		<tr>
-			<th colspan=2>게시글 작성</th>
-		</tr>
-		<tr>
-			<th width="10%">성 명</th>
-			<td width="auto"><input type="text"></td>
-		</tr>
-		<tr>
-			<th width="10%">제 목</th>
-			<td width="auto"><input style="width: 60%" type="text"></td>
-		</tr>
-		<tr>
-			<th width="10%">내 용</th>
-			<td width="auto"><textarea class="textArea" type="text"></textarea></td>
-		</tr>
-		<tr>
-			<th width="10%">비밀번호</th>
-			<td width="auto"><input type="password"></td>
-		</tr>
-	</table>
-	<hr>
-	<div style="display: flex; justify-content: center">
-		<button type="submit">등록</button>
-		<button type="reset">다시쓰기</button>
-		<button type="button">리스트</button>
-	</div>
+	<form action="boardPost" method="post">
+		<table>
+			<tr>
+				<th colspan=2>게시글 작성</th>
+			</tr>
+			<tr>
+				<th width="10%">성 명</th>
+				<td width="auto"><input name="name"></td>
+			</tr>
+			<tr>
+				<th width="10%">제 목</th>
+				<td width="auto"><input style="width: 60%" name="subject"></td>
+			</tr>
+			<tr>
+				<th width="10%">내 용</th>
+				<td width="auto"><textarea class="textArea" name="content"></textarea></td>
+			</tr>
+			<tr>
+				<th width="10%">비밀번호</th>
+				<td width="auto"><input type="password" name="pass"></td>
+			</tr>
+		</table>
+		<hr>
+		<div style="display: flex; justify-content: center">
+			<button type="submit">등록</button>
+			<button type="reset">다시쓰기</button>
+			<button type="button">리스트</button>
+		</div>
+		<input type="hidden" name="ip" value="<%=request.getRemoteAddr() %>">
+	</form>
 </body>
 
 </html>

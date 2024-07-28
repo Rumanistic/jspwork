@@ -10,6 +10,7 @@
 	String keyWord = request.getParameter("keyWord");
 
 	Board b = bDao.getBoardInfo(num);
+	session.setAttribute("bean", b);
 %>
 <!DOCTYPE html>
 <html>
@@ -69,9 +70,9 @@
 	<hr>
 	<div style="display: flex; justify-content: center">
 		[&ensp;<a href="javascript:goList()">리스트</a>&ensp;|&ensp;
-		<a href="javascript:edit()">수 정</a>&ensp;|&ensp;
-		<a href="javascript:reply()">답 변</a>&ensp;|&ensp;
-		<a href="javascript:deleteBoard()">삭 제</a>&ensp;]
+		<a href="update.jsp?curPage=<%=curPage %>&num=<%=num %>">수 정</a>&ensp;|&ensp;
+		<a href="reply.jsp?curPage=<%=curPage %>">답 변</a>&ensp;|&ensp;
+		<a href="delete.jsp?curPage=<%=curPage %>&num=<%=num %>">삭 제</a>&ensp;]
 	</div>
 	
 	<form name="listFrm">

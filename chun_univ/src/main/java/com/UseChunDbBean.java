@@ -4,43 +4,101 @@ import java.sql.*;
 
 public class UseChunDbBean {
 	private DBConnectionMgr chunPool = null;
+	Connection con = null;
+	Statement st = null;
+	PreparedStatement pst = null;
+	ResultSet rs = null;
+	String sql = "";
 	
 	public UseChunDbBean() {
-		chunPool = DBConnectionMgr.getInstance();
+		chunPool = DBConnectionMgr.getInstance(); 
 	}
 	
-	public ChunBean getStudent(String stdNo, String stdPw) {
+	public boolean doLogin(String stdId, String stdPwd) {
+		boolean flag = false;
+
+		try {
+			con = chunPool.getConnection();
+			sql = "select * from tb_student where student_no = ? and student_pwd = ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, stdId);
+			pst.setString(2, stdPwd);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				flag = true;
+			}
+			else {
+				return flag;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			chunPool.freeConnection(con, pst, rs);
+		}
+		
+		return flag;
+	}
+	
+	public String getStdId(String stdName, String stdSsn) {
+		StringBuilder sb = new StringBuilder();
+		
+		try {
+			con = chunPool.getConnection();
+			sql = "select s.*, d.department_name as dept from tb_student s, tb_department d "
+					+ " where s.department_no=d.department_no and s.student_name='" + stdName + "' and s.student_ssn like '" + stdSsn + "-%'";
+			System.out.println(sql);
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			if(rs != null) {
+				while(rs.next()) {
+					sb.append(rs.getString("student_no") + " (");
+					sb.append(rs.getString("dept") + ", ");
+					sb.append(rs.getString("entrance_date").substring(0, 10) + ")\n");
+				}
+				sb.append("입니다.");
+			} else {
+				sb.append("검색된 계정이 없습니다.");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			chunPool.freeConnection(con);
+		}			
+		return sb.toString();
+	}
+	
+	public ChunBean getStdInfo(String stdId) {
 		ChunBean cb = new ChunBean();
 		
-		Connection con = null;
-		Statement st = null;
-		ResultSet rs = null;
-		
-		if(stdPw.equals("1234")) {
-			try {
-				con = chunPool.getConnection();
-				st = con.createStatement();
-				String q = "select STUDENT_NO, DEPARTMENT_NO, STUDENT_NAME, STUDENT_SSN, STUDENT_ADDRESS, ENTRANCE_DATE, ABSENCE_YN, COACH_PROFESSOR_NO"
-						+ " from tb_student"
-						+ " where STUDENT_NO = '" + stdNo + "'";
-				rs = st.executeQuery(q);
-				
-				cb.setSTUDENT_NO(rs.getString("STUDENT_NO"));
-				cb.setDEPARTMENT_NO(rs.getString("DEPARTMENT_NO"));
-				cb.setSTUDENT_NAME(rs.getString("STUDENT_NAME"));
-				cb.setENTRANCE_DATE(rs.getString("ENTRANCE_DATE"));
-				cb.setABSENCE_YN(rs.getString("ABSENCE_YN"));
-				cb.setCOACH_PROFESSOR_NO(rs.getString("COACH_PROFESSOR_NO"));
-			} catch(Exception e) {
-				e.printStackTrace();
-			} finally {
-				chunPool.freeConnection(con);
-			}			
-			return cb;
-		}
-		else {
-			return null;
+		try {
+			con = chunPool.getConnection();
+			sql = "select s.*, d.department_name, p.professor_name "
+					+ " from tb_student s, tb_department d, tb_professor p"
+					+ " where s.department_no=d.department_no "
+					+ " and s.coach_professor_no=p.professor_no "
+					+ " and s.student_no=" + stdId;
+			System.out.println(sql);
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			if(rs != null) {
+				cb.setStudent_no(rs.getString("student_no"));
+				cb.setDepartment_no(rs.getString("department_no"));
+				cb.setDepartment_name(rs.getString("department_name"));
+				cb.setStudent_name(rs.getString("student_name"));
+				cb.setEntrance_date(rs.getString("entrance_date"));
+				cb.setAbsence_yn(rs.getString("absence_yn"));
+				cb.setCoach_professor_no(rs.getString("coach_professor_no"));
+				cb.setCoach_professor_name(rs.getString("coach_professor_name"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			chunPool.freeConnection(con);
 		}
 		
+		return cb;
 	}
 }

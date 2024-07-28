@@ -82,11 +82,6 @@
 		document.readFrm.action = "read.jsp";
 		document.readFrm.submit();
 	}
-	
-	post = () => {
-		document.postFrm.action = "post.jsp";
-		document.postFrm.submit();
-	}
 </script>
 </head>
 <body>
@@ -177,7 +172,7 @@
  	%>
 			</td>
 			<td>
-		 		<a href="javascript:post()" class="a">[글쓰기]</a>&emsp;
+		 		<a href="post.jsp" class="a">[글쓰기]</a>&emsp;
 				<a href="javascript:list();" class="a">[처음으로]</a>
 			</td>
 		</tr>
