@@ -52,6 +52,7 @@ public class UseChunDbBean {
 			rs = pst.executeQuery();
 			
 			if(rs != null) {
+				sb.append("입력하신 내용과 일치하는 학번/아이디는\n");
 				while(rs.next()) {
 					sb.append(rs.getString("student_no") + " (");
 					sb.append(rs.getString("dept") + ", ");
@@ -107,11 +108,11 @@ public class UseChunDbBean {
 		
 		try {
 			con = chunPool.getConnection();
-			sql = "select * from tb_student where student_no=? and student_name=? and student_ssn like ?";
+			sql = "select * from tb_student where student_no=? and student_name=? and student_ssn like '%" + stdSsn + "%'";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, stdNo);
 			pst.setString(2, stdName);
-			pst.setString(3, stdSsn);
+			System.out.println(sql);
 			rs = pst.executeQuery();
 			
 			if(rs.next()) {
@@ -126,15 +127,13 @@ public class UseChunDbBean {
 		return b;
 	}
 	
-	public boolean updateStdPwd(String stdNo, String newStdPwd) {
+	public boolean updateStdPwd(String stdNo, String newPwd) {
 		boolean b = false;
 		
 		try {
 			con = chunPool.getConnection();
-			sql = "update tb_student set student_pwd = ? where student_no = ?";
+			sql = "update tb_student set student_pwd='" + newPwd + "' where student_no='" + stdNo +"'";
 			pst = con.prepareStatement(sql);
-			pst.setString(1, stdNo);
-			pst.setString(2, newStdPwd);
 			int result = pst.executeUpdate();
 			
 			if(result > 0) {

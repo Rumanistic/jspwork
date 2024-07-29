@@ -29,6 +29,7 @@ public class StdInfoVerify extends HttpServlet {
 		else
 			verify = ucb.doVerify(stdNo, stdName, stdSsn);
 		
+		System.out.println(verify);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("isVerified", verify);

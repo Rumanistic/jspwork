@@ -21,7 +21,7 @@ public class ReplyDao {
 		
 		try {
 			con = pool.getConnection();
-			sql = "select * from reply where ref = ?";
+			sql = "select * from reply where ref = ? order by no";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, ref);
 			rs = pst.executeQuery();
@@ -42,5 +42,22 @@ public class ReplyDao {
 			pool.freeConnection(con, pst, rs);
 		}
 		return rList;
+	}
+	
+	public void insertReply(Reply r) {
+		try {
+			con = pool.getConnection();
+			sql = "insert into reply values(seq_reply.nextval, ?, ?, ?, sysdate)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, r.getContent());
+			pst.setInt(2, r.getRef());
+			pst.setString(3, r.getName());
+			
+			if(pst.executeUpdate() > 0) {
+				System.out.println("정상 등록되었습니다.");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }

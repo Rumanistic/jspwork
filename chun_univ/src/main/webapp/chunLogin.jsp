@@ -5,9 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 9815210 780808 -->
 <meta charset="UTF-8">
 <title>Chun Univ. Log-in</title>
-<link href="./style.css" rel="stylesheet" type="text/css">
+<link href="./resources/css/login.css" rel="stylesheet" type="text/css">
 <script>
 	newWindow = (url, name) => {
 		open(url, name, 'location=no, directories=no, resizable=no, toolbar=no, menubar=no, width=350px, height=500px, top=100px, left=500px');
@@ -31,8 +32,8 @@
 				</div>
 				<div class="div_id_pass">
 					<ul>
-						<li>➪<a href="#" onclick="newWindow('findid.jsp', '학번/아이디 찾기');">학번/아이디 찾기</a></li>
-						<li>➪<a href="#" onclick="newWindow('findpwd.jsp', '비밀번호 찾기');">비밀번호 찾기</a></li>
+						<li>➪<a href="#" onclick="newWindow('login/findid.jsp', '학번/아이디 찾기');">학번/아이디 찾기</a></li>
+						<li>➪<a href="#" onclick="newWindow('login/findpwd.jsp', '비밀번호 찾기');">비밀번호 찾기</a></li>
 					</ul>
 				</div>
 				<br>
@@ -45,5 +46,6 @@
 			<div class="div_round"></div>
 		</div>
 	</div>
+	<%@ include file="./banner/footer.jsp" %>
 </body>
 </html>

@@ -18,7 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../resources/css/login.css">
 <script type="text/javascript">
 	popupClose = () => {
 <%
@@ -54,8 +54,8 @@
 			%>
 				<form action="stdPwdUpdate" method="post">
 					<div>
-						<input name="newPwd" placeholder="새로운 비밀번호">
-						<input name="newPwdChk" placeholder="비밀번호 확인">
+						<input type="password" name="newPwd" placeholder="새로운 비밀번호">
+						<input type="password" name="newPwdChk" placeholder="비밀번호 확인">
 						<input type="hidden" name="stdNo" value="<%=stdNo %>">
 					</div>
 					<button type="submit">조회</button>
@@ -66,9 +66,7 @@
 		if(result){
 	%>
 		<div>
-			<pre>
-				정상적으로 변경되었습니다.
-			</pre>
+			<pre>정상적으로 변경되었습니다.</pre>
 		</div>
 	<%
 		}

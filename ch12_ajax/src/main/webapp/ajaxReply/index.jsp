@@ -14,7 +14,7 @@
 			<tr>
 				<th>댓글 작성</th>
 				<td>
-					<textarea rows="3" cols="50"></textarea>
+					<textarea rows="3" cols="50" id="content"></textarea>
 				</td>
 				<td><button id="btn1">등록</button></td>
 			</tr>
@@ -27,6 +27,10 @@
 	<script type="text/javascript">
 		$(() => {
 			selectReplyList();
+			
+			$("#btn1").click(() => {
+				applyReplyList();
+			});
 		});
 		
 		const selectReplyList = () => {
@@ -47,6 +51,24 @@
 				},
 				error: () => {
 					
+				}
+			})
+		}
+		
+		const applyReplyList = () => {
+			$.ajax({
+			url: "insertReply.do",
+				data: {
+					bnum: 1,
+					content: $("#content").val(),
+					name: "최규태"
+				},
+				type: "post",
+				success: (result) => {
+					selectReplyList();
+				},
+				error: () => {
+					console.log("ajax 통신 실패");
 				}
 			})
 		}

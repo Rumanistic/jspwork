@@ -27,7 +27,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>StdNoFind</servlet-name>
-    <url-pattern>/stdNoFind</url-pattern>
+    <url-pattern>/login/stdNoFind</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -37,7 +37,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>StdPwdUpdate</servlet-name>
-    <url-pattern>/stdPwdUpdate</url-pattern>
+    <url-pattern>/login/stdPwdUpdate</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -47,6 +47,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>StdInfoVerify</servlet-name>
-    <url-pattern>/stdInfoVerify</url-pattern>
+    <url-pattern>/login/stdInfoVerify</url-pattern>
   </servlet-mapping>
 </web-app>

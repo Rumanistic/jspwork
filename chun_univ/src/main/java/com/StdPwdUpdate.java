@@ -22,19 +22,21 @@ public class StdPwdUpdate extends HttpServlet {
 		if(request.getParameter("newPwd").equals(request.getParameter("newPwdChk"))){
 			String stdNo = request.getParameter("stdNo");
 			String newStdPwd = request.getParameter("newPwd");
+			System.out.println(stdNo + " | " + request.getParameter("newPwdChk") + newStdPwd);	
 			
-			if(stdNo.equals("admin")) {
+			result = ucb.updateStdPwd(stdNo, newStdPwd);
+
+			if(result) {
 				HttpSession session = request.getSession();
 				session.setAttribute("result", result);
-				response.sendRedirect("findpwd.jsp");
-			}
-				
-			if(ucb.updateStdPwd(stdNo, newStdPwd)) {
-				result = true;
 			}
 			
-			HttpSession session = request.getSession();
-			session.setAttribute("result", result);
+			if(stdNo.equals("admin")) {
+				result = true;
+				HttpSession session = request.getSession();
+				session.setAttribute("result", result);
+			}	
+			
 			response.sendRedirect("findpwd.jsp");
 		}
 			

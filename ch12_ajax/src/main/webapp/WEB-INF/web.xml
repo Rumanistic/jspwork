@@ -69,4 +69,14 @@
     <servlet-name>AjaxServletReplyList</servlet-name>
     <url-pattern>/ajaxReply/boardReply.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjaxServletInsertReply</display-name>
+    <servlet-name>AjaxServletInsertReply</servlet-name>
+    <servlet-class>ajaxReply.AjaxServletInsertReply</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxServletInsertReply</servlet-name>
+    <url-pattern>/ajaxReply/insertReply.do</url-pattern>
+  </servlet-mapping>
 </web-app>

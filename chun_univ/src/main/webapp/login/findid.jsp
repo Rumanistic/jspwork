@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>학번 / 아이디 조회</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../resources/css/login.css">
 <script type="text/javascript">
 	popupClose = () => {
 <%
