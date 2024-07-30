@@ -21,9 +21,6 @@
 </script>
 </head>
 <body style="margin: 5px;">
-	<header>
-		
-	</header>
 	<section>
 	<%
 		System.out.println(result);

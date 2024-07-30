@@ -9,12 +9,7 @@
 <meta charset="UTF-8">
 <title>Chun Univ. Log-in</title>
 <link href="./resources/css/login.css" rel="stylesheet" type="text/css">
-<script>
-	newWindow = (url, name) => {
-		open(url, name, 'location=no, directories=no, resizable=no, toolbar=no, menubar=no, width=350px, height=500px, top=100px, left=500px');
-		return false;
-	}
-</script>
+<script type="text/javascript" src="./resources/js/login.js" charset="UTF-8"></script>
 </head>
 <body>
 	<div class="div_main">

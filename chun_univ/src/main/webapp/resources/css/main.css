@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+html {
+	height:100%;
+	margin: 0 5% 0;
+	padding: 0;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	width: 100%;
+}
+
+header {
+	height: 5%;
+}
+
+div.content_holder {
+	height: 80%;
+}
+
+aside {
+	width: 15%;
+}
+
+aside ul {
+    list-style: none;
+	padding: 0;
+    width: 100%;
+}
+
+aside > nav > li,li > a {
+	display: block;
+    padding-left: 20px;
+	height: 50px;
+	text-align: left;
+	align-content: center;
+	line-height: 100%;
+	text-decoration: none;
+	color: black;
+}
+
+aside li:hover {
+	background-color: yellowgreen;
+}
+
+/* footer include용 CSS*/
+.footer_info {
+	height: 10%;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 5% 0;
+	background-color: #ccc;
+}
+
+#lSide #rSide {
+	display: flex;
+	align-items: center;
+}
+
+#lSide > figure {
+	margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+#lSide > figure > img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+#rSide a {
+	text-decoration: none;
+	color: black;
+	
+}

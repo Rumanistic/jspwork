@@ -128,7 +128,8 @@ section input {
 
 footer button {
 	width: 100%;
-	height: 20px;
+	height: 30px;
+	margin-bottom: 10px;
 	background-color: blue;
 	color: white;
 	font: bold;
@@ -138,8 +139,8 @@ footer button {
 .footer_info {
 	display: flex;
 	justify-content: space-between;
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-left: 5%;
+	margin-right: 5%;
 	background-color: #FFF;
 }
 
@@ -161,6 +162,8 @@ footer button {
 	display: block;
 }
 
-#rSide > nav a {
+#rSide a {
 	text-decoration: none;
+	color: black;
+	
 }

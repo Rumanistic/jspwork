@@ -79,12 +79,12 @@ public class UseChunDbBean {
 					+ " from tb_student s, tb_department d, tb_professor p"
 					+ " where s.department_no=d.department_no "
 					+ " and s.coach_professor_no=p.professor_no "
-					+ " and s.student_no=" + stdId;
+					+ " and s.student_no='" + stdId + "'";
 			System.out.println(sql);
 			pst = con.prepareStatement(sql);
 			rs = pst.executeQuery();
 			
-			if(rs != null) {
+			if(rs.next()) {
 				cb.setStudent_no(rs.getString("student_no"));
 				cb.setDepartment_no(rs.getString("department_no"));
 				cb.setDepartment_name(rs.getString("department_name"));
@@ -92,7 +92,7 @@ public class UseChunDbBean {
 				cb.setEntrance_date(rs.getString("entrance_date"));
 				cb.setAbsence_yn(rs.getString("absence_yn"));
 				cb.setCoach_professor_no(rs.getString("coach_professor_no"));
-				cb.setCoach_professor_name(rs.getString("coach_professor_name"));
+				cb.setCoach_professor_name(rs.getString("professor_name"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -13,7 +13,7 @@
 		</nav>
 			<p>
 				<span>제작자: 김현수</span><br>
-				<span>이메일: rumanistic@gmail.com</span><br>
+				<span>E-mail: rumanistic@gmail.com</span><br>
 			</p>
 	</article>
 </footer>

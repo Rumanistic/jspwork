@@ -24,5 +24,13 @@
 	<h3>1. JSTL Core Library</h3>
 	<p>변수와 조건문, 반복문 등의 로직과 관련된 문법을 제공</p>
 	<a href="01_core.jsp">go to core</a>
+	
+	<h3>3. JSTL Function Library</h3>
+	<p>EL 안에서 사용 할 수 있는 메서드 제공</p>
+	<a href="02_fmt.jsp">go to fmt</a>
+	
+	<h3>3. JSTL Function Library</h3>
+	<p>EL 안에서 사용 할 수 있는 메서드 제공</p>
+	<a href="03_fn.jsp">go to fn</a>
 </body>
 </html>

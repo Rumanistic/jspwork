@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*, com.tjoeun.vo.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,5 +50,168 @@
 	<c:remove var="result" />
 	
 	result = ${result}
+	
+	
+	<hr>
+	
+	<pre>
+		* 변수(데이터) 출력: 
+			(c:out value="wantToPrintValue" [default="defaultValue"] [escapeXml="true|false"])
+	</pre>
+	<c:out value="${num1 }" /><br>
+	<c:out value="${abcd }" default="없음" /><br>
+	
+	<c:set var="outTest" value="<b>출력테스트</b>" />
+	<c:out value="${outTest }"></c:out><br>
+	<c:out value="${outTest }" escapeXml="false"></c:out><br>
+	
+	
+	<hr>
+	
+	<h3>2. 조건문 - if</h3>
+	<pre>
+		자바의 if문과 비슷한 역할
+			- 조건식은 test 속성에 작성(단, EL구문으로 기술해야 함)
+	</pre>
+	
+	<c:if test="${num1 < num2}">
+		<b>num1이 num2보다 작다</b>
+	</c:if>
+	<c:if test="${num1 >= num2}">
+		<b>num1이 num2보다 크거나 같다</b><br>
+	</c:if>
+	
+	<c:set var="str" value="안녕하세요" />
+	<c:if test="${str == '안녕하세요'}"><br>
+		<b>Hello</b>
+	</c:if>
+	
+	<hr>
+	
+	<h3>3. choose</h3>
+	<pre>
+		* (c:choose, c:when, c:otherwise)
+			- choose: 조건들의 리스트
+			- when: 조건의 if절 or else-if절
+			- otherwise: 조건의 else절
+	</pre>
+	
+	<c:choose>
+		<c:when test="${num1 < num2}">
+			<b>num1이 num2보다 작다</b>
+		</c:when>
+		<c:when test="${num1 < num2}">
+			<b>num1이 num2보다 작다</b>
+		</c:when>
+		<c:otherwise>
+			<b>num1은 num2와 같다</b>
+		</c:otherwise>
+	</c:choose>
+	
+	<hr>
+	
+	<h3>4. 반복문</h3>
+	<pre>
+		* for-loop: (c:forEach var="varName" begin="beginValue" end="endValue" [step="[in/de]crease value; default 1"])
+		* 향상된 for-loop: (c:forEach var="varName" items="itemList or Objects" [varStatus="현재 접근한 요소의 상태값을 저장할 변수"])
+	</pre>
+	
+	<c:forEach var="i" begin="1" end="10" step="2">
+		<br>반복확인: ${i}<br>
+	</c:forEach>
+	
+	<c:forEach var="i" begin="1" end="6">
+		<h${i}>태그도 적용가능: h${i}</h${i}>
+	</c:forEach>
+	
+	
+	<c:set var="colors">
+		red,yellow,green,pink
+	</c:set>
+	
+	<ul>
+		<c:forEach var="c" items="${colors}">
+			<li style="background-color: ${c}">${c}</li>
+		</c:forEach>
+	</ul>
+	
+	<%
+		ArrayList<Person> list = new ArrayList<>();
+ 		list.add(new Person("이고잉", 30, "여자"));
+		list.add(new Person("박대기", 40, "남자"));
+		list.add(new Person("이따금", 46, "남자")); 
+	%>
+	
+	<c:set var="pList" value="<%=list %>" scope="request" />
+	
+	<table border="1">
+		<tr>
+			<th>index</th>
+			<th>No.</th>
+			<th>이름</th>
+			<th>나이</th>
+			<th>성별</th>
+		</tr>
+		<c:choose>
+			<c:when test="${pList.size() > 0}">
+				<%-- <c:forEach var="p" items="${pList}">
+				<tr>
+					<td>${p.getName()}</td>
+					<td>${p.getAge()}</td>
+					<td>${p.getGender()}</td>
+				</tr>
+				</c:forEach> --%>
+				<c:forEach var="p" items="${pList}" varStatus="pStatus">
+				<tr>
+					<td>${pStatus.index}</td>	<!-- 0부터 시작 -->
+					<td>${pStatus.count}</td>	<!-- 1부터 시작 -->
+					<td>${p.getName()}</td>
+					<td>${p.getAge()}</td>
+					<td>${p.getGender()}</td>
+				</tr>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<tr>
+					<td colspan='3'>
+						<b>저장된 사용자가 없습니다.</b>
+					</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
+	</table>
+	
+	
+	<hr>
+	
+	<h3>5. 반복문 : forTokens</h3>
+	<pre>
+		* (c:forTokens var="varName" items="wantToSplitString" delims="delimeterToken")
+			- 구분자(delims)를 통해서 분리된 각각의 문자열을 순차적으로 접근하면서 반복 수행
+			- split 혹은 StringTokenizer와 비슷한 기능
+	</pre>
+	
+	<c:set var="device" value="컴퓨터,핸드폰,TV,에어컨/냉장고.세탁기" />
+	<ol>
+		<c:forTokens var="d" items="${device}" delims=",./">
+			<li>${d}</li>
+		</c:forTokens>
+	</ol>
+	
+	<hr>
+	
+	<h3>6. url, queryString</h3>
+	<pre>
+		* url 경로를 생성하고, queryString 정의할 수 있는 태그
+			&lt;c:url var="varName" value="requestUrl">
+				&lt;c:param name="key" value="value" />
+				&lt;c:param name="key" value="value" />
+			&lt;/c:url>
+	</pre>
+	
+	
+	
+	
+	
 </body>
 </html>
