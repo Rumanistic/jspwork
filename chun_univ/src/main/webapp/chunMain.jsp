@@ -5,7 +5,7 @@
 	ChunBean cb = null;
 
 	cb = (ChunBean)session.getAttribute("stdInfo");
-	session.setMaxInactiveInterval(300000);
+	session.setMaxInactiveInterval(60);
 	int sessionExpireTimer = session.getMaxInactiveInterval();
 %>
 <!DOCTYPE html>
