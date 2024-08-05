@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+<!-- settings: mybatis가 구동될 때 선언할 설정들을 작성하는 영역 -->
+  <settings>
+  	<setting name="jdbcTypeForNull" value="NULL"/>
+  </settings>
+
+<!-- environments: mybatis에서 연동하는 DB 정보들을 등록하는 영역 -->
+  <environments default="development">
+    <environment id="development">
+      <!-- transactionManager: 트랜잭션을 직접 관리할지에 대한 설정 [JDBC(수동) | MANAGED(자동)] -->
+      <transactionManager type="JDBC"/>
+      <!-- dataSource: connection pool 사용 여부 [POOLED(사용) | UNPOOLED(미사용)] -->
+      <dataSource type="POOLED">
+        <property name="driver" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="username" value="chun_univ"/>
+        <property name="password" value="1234"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <!-- mappers: 실행할 sql문을 기록해두는 mapper 파일을 등록하는 영역 -->
+  <mappers>
+    <mapper resource="/mappers/member-mapper.xml"/>
+  </mappers>
+</configuration>
